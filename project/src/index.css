@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent-gradient: linear-gradient(
+    45deg,
+    rgb(136, 58, 234),
+    rgb(190, 141, 255) 30%
+    /* rgb(240, 240, 240) 60% */
+  );
+}
+
+body {
+  background-color: #13151a;
+  color: white;
+}
+
+.gradient-text {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hover-gradient {
+  background-size: 400%;
+  background-position: 0%;
+}
+
+.hover-gradient:hover {
+  background: var(--accent-gradient);
+  transition: background-position .6s cubic-bezier(0.22, 1, 0.36, 1);
+  background-position: 100%;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 10s linear infinite;
+}
