@@ -1,48 +1,133 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { BookOpen, Users, Award, Building } from 'lucide-react';
+
+const stats = [
+  { name: 'Active Students', value: '500+', icon: Users },
+  { name: 'Research Papers', value: '150+', icon: BookOpen },
+  { name: 'Awards', value: '25+', icon: Award },
+  { name: 'Partner Institutions', value: '10+', icon: Building },
+];
 
 export default function About() {
   return (
-    <div className="bg-[#13151a] text-white min-h-screen">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-        <h1 className="text-3xl font-bold gradient-text mb-6">About CryptoPortal</h1>
-        <p className="text-lg text-[rgb(224,204,250)] leading-relaxed mb-6">
-          Welcome to <span className="font-semibold">CryptoPortal</span>, a one-stop platform for all your cryptography learning needs.
-          Our mission is to provide students at IIIT Delhi and beyond with access to resources, tools, and a community dedicated to the study of cryptography.
+    <motion.div 
+      className="space-y-12"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
+      {/* Heading */}
+      <motion.div className="text-center" initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
+        <h1 className="text-4xl font-bold text-white mb-4">About CryptoPortal</h1>
+        <p className="text-[rgb(224,204,250)] text-lg max-w-3xl mx-auto">
+          CryptoPortal is IIIT Delhi's premier platform for cryptography education and research,
+          fostering collaboration and excellence in the field of cryptography and security.
         </p>
-        <p className="text-lg text-[rgb(224,204,250)] leading-relaxed mb-6">
-          Cryptography is the backbone of secure communication in the modern world. At CryptoPortal, we strive to make this field 
-          accessible by curating the best resources and fostering an engaging learning environment. From beginner-friendly materials 
-          to advanced research insights, we have something for everyone.
-        </p>
-        <h2 className="text-2xl font-semibold gradient-text mb-4">Our Goals</h2>
-        <ul className="list-disc list-inside text-[rgb(224,204,250)] mb-6">
-          <li>Provide high-quality learning resources on cryptography.</li>
-          <li>Foster a community of like-minded learners and experts.</li>
-          <li>Host events, workshops, and discussions to deepen understanding.</li>
-        </ul>
-        <h2 className="text-2xl font-semibold gradient-text mb-4">Why Choose CryptoPortal?</h2>
-        <p className="text-lg text-[rgb(224,204,250)] leading-relaxed mb-12">
-          CryptoPortal is built with students in mind. We understand the challenges of learning complex topics like cryptography,
-          so we've created an intuitive and supportive platform to help you succeed. Whether you're a beginner or an advanced 
-          learner, CryptoPortal has the resources you need to excel.
-        </p>
+      </motion.div>
 
-        {/* A Word from Faculty */}
-        <div className="bg-[#23262d] p-6 rounded-lg shadow-md flex flex-col md:flex-row items-center gap-6">
-          {/* Left Section */}
-          <div className="md:w-1/3">
-            <h3 className="text-xl font-bold gradient-text">A Word from Faculty</h3>
-          </div>
-          {/* Right Section */}
-          <div className="md:w-2/3 text-[rgb(224,204,250)]">
-            <p className="italic mb-2">
-              "Cryptography is not just a subject—it's a way of thinking that secures our digital world. At IIIT Delhi, we emphasize not only the 
-              theoretical foundations but also their practical applications. Dive deep, stay curious, and always keep learning!"
-            </p>
-            <p className="font-semibold text-white">- Prof. Ravi Anand</p>
-          </div>
-        </div>
+      {/* Stats Section */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {stats.map((stat, index) => (
+          <motion.div
+            key={stat.name}
+            className="bg-[#23262d] p-6 rounded-lg border border-[rgb(136,58,234)] hover:border-[rgb(224,204,250)] transition-all duration-300 text-center"
+            whileHover={{ scale: 1.05 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.2 }}
+          >
+            <stat.icon className="h-8 w-8 mx-auto text-[rgb(136,58,234)]" />
+            <p className="mt-4 text-2xl font-semibold text-white">{stat.value}</p>
+            <p className="text-[rgb(224,204,250)]">{stat.name}</p>
+          </motion.div>
+        ))}
       </div>
-    </div>
+
+      {/* Mission & Vision */}
+      <div className="grid md:grid-cols-2 gap-8">
+        {['Our Mission', 'Our Vision'].map((title, index) => (
+          <motion.div
+            key={title}
+            className="bg-[rgba(49,10,101,0.2)] rounded-lg p-6"
+            initial={{ x: index % 2 === 0 ? -50 : 50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: index * 0.2 }}
+          >
+            <h2 className="text-2xl font-bold text-white mb-4">{title}</h2>
+            <p className="text-[rgb(224,204,250)]">
+              {title === 'Our Mission'
+                ? 'To provide world-class education and research opportunities in cryptography, fostering innovation and excellence in information security.'
+                : 'To be a leading center of excellence in cryptography research and education, contributing to secure communication technologies.'}
+            </p>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Research Areas */}
+      <motion.div 
+        className="bg-[#23262d] rounded-lg p-8 border border-[rgb(136,58,234)]"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        <h2 className="text-2xl font-bold text-white mb-6">Research Areas</h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          {['Applied Cryptography', 'Cryptanalysis'].map((area, index) => (
+            <motion.div
+              key={area}
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.3 }}
+            >
+              <h3 className="text-xl font-semibold text-[rgb(224,204,250)] mb-2">{area}</h3>
+              <ul className="list-disc list-inside text-white space-y-2">
+                {area === 'Applied Cryptography' ? (
+                  <>
+                    <li>Public Key Infrastructure</li>
+                    <li>Secure Communication Protocols</li>
+                    <li>Blockchain Technology</li>
+                    <li>Zero-Knowledge Proofs</li>
+                  </>
+                ) : (
+                  <>
+                    <li>Side-Channel Attacks</li>
+                    <li>Quantum Cryptanalysis</li>
+                    <li>Mathematical Cryptanalysis</li>
+                    <li>Hardware Security</li>
+                  </>
+                )}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Contact Section */}
+      <motion.div 
+        className="bg-[rgba(49,10,101,0.2)] rounded-lg p-6"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+      >
+        <h2 className="text-2xl font-bold text-white mb-4">Contact Us</h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          {[
+            { title: 'Location', details: 'Cryptography Research Lab, IIIT Delhi, Okhla Industrial Estate, Phase III, New Delhi, India' },
+            { title: 'Get in Touch', details: 'Email: crypto@iiitd.ac.in\nPhone: +91-11-2690-7400\nOffice Hours: Monday-Friday, 9:00 AM - 5:00 PM' }
+          ].map((contact, index) => (
+            <motion.div 
+              key={contact.title}
+              initial={{ x: index % 2 === 0 ? -50 : 50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+            >
+              <h3 className="text-xl font-semibold text-[rgb(224,204,250)] mb-2">{contact.title}</h3>
+              <p className="text-white whitespace-pre-line">{contact.details}</p>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+    </motion.div>
   );
 }
