@@ -6,8 +6,8 @@
   --accent-gradient: linear-gradient(
     45deg,
     rgb(136, 58, 234),
-    rgb(190, 141, 255) 30%
-    /* rgb(240, 240, 240) 60% */
+    rgb(224, 204, 250) 30%,
+    white 60%
   );
 }
 
@@ -24,25 +24,25 @@ body {
 }
 
 .hover-gradient {
-  background-size: 400%;
-  background-position: 0%;
+  position: relative;
+  background: #23262d;
+  transition: all 0.3s ease;
 }
 
 .hover-gradient:hover {
+  background: rgb(49, 10, 101);
+}
+
+.hover-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: var(--accent-gradient);
-  transition: background-position .6s cubic-bezier(0.22, 1, 0.36, 1);
-  background-position: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
-@keyframes scroll {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-100%);
-  }
-}
-
-.animate-scroll {
-  animation: scroll 10s linear infinite;
+.hover-gradient:hover::before {
+  opacity: 0.1;
 }
