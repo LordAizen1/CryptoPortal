@@ -43,14 +43,14 @@ export default function Events() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.2 }}
       className="space-y-8"
     >
       <div className="text-center">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.2, delay: 0.2 }}
           className="text-4xl font-bold text-white mb-4"
         >
           Upcoming Events
@@ -58,7 +58,7 @@ export default function Events() {
         <motion.p
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.2, delay: 0.3 }}
           className="text-[rgb(224,204,250)] text-lg"
         >
           Stay updated with the latest cryptography events, workshops, and conferences.
