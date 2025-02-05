@@ -44,7 +44,7 @@ export default function Home() {
         className="text-center"
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.2 }}
       >
         <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
           Welcome to CryptoPortal
@@ -109,6 +109,7 @@ export default function Home() {
       </motion.div>
 
       {/* Latest Updates - Auto Scrolling */}
+      <h3 class="text-2xl font-bold text-white mb-2">Latest Updates</h3>
       <div className="relative h-40 overflow-hidden">
         <motion.div
           className="space-y-4 absolute top-0"
