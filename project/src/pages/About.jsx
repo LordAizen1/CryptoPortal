@@ -18,7 +18,7 @@ export default function About() {
       transition={{ duration: 1 }}
     >
       {/* Heading */}
-      <motion.div className="text-center" initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
+      <motion.div className="text-center" initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.2 }}>
         <h1 className="text-4xl font-bold text-white mb-4">About CryptoPortal</h1>
         <p className="text-[rgb(224,204,250)] text-lg max-w-3xl mx-auto">
           CryptoPortal is IIIT Delhi's premier platform for cryptography education and research,
@@ -35,7 +35,7 @@ export default function About() {
             whileHover={{ scale: 1.05 }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
+            transition={{ duration: 0.2, delay: index * 0.2 }}
           >
             <stat.icon className="h-8 w-8 mx-auto text-[rgb(136,58,234)]" />
             <p className="mt-4 text-2xl font-semibold text-white">{stat.value}</p>
@@ -120,7 +120,7 @@ export default function About() {
               key={contact.title}
               initial={{ x: index % 2 === 0 ? -50 : 50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              transition={{ duration: 0.2, delay: index * 0.2 }}
             >
               <h3 className="text-xl font-semibold text-[rgb(224,204,250)] mb-2">{contact.title}</h3>
               <p className="text-white whitespace-pre-line">{contact.details}</p>
