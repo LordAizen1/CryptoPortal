@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { BookOpen, Calendar, Database, Home, Info, Users, UserCircle, LogOut, Settings } from 'lucide-react';
+import { BookOpen, Calendar, Database, Home, Info, Users, UserCircle, LogOut, Settings, Newspaper, FlaskRound } from 'lucide-react';
 
 const navigation = [
   { name: 'Home', href: '/', icon: Home },
@@ -9,6 +9,8 @@ const navigation = [
   { name: 'Events', href: '/events', icon: Calendar },
   { name: 'Members', href: '/members', icon: Users },
   { name: 'About', href: '/about', icon: Info },
+  { name: 'Blog', href: '/blog', icon: Newspaper},
+  { name: 'Labs', href: '/labs', icon: FlaskRound},
 ];
 
 export default function Layout({ children }) {
