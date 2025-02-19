@@ -1,6 +1,20 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { BookOpen, Calendar, Database, Home, Info, Users, UserCircle, LogOut, Settings, Newspaper, FlaskRound } from 'lucide-react';
+import { 
+  BookOpen, 
+  Calendar, 
+  Database, 
+  Home, 
+  Info, 
+  Users, 
+  UserCircle, 
+  LogOut, 
+  Settings, 
+  Newspaper, 
+  FlaskRound as Flask,
+  Menu,
+  X
+} from 'lucide-react';
 
 const navigation = [
   { name: 'Home', href: '/', icon: Home },
@@ -8,15 +22,17 @@ const navigation = [
   { name: 'Resources', href: '/resources', icon: Database },
   { name: 'Events', href: '/events', icon: Calendar },
   { name: 'Members', href: '/members', icon: Users },
+  { name: 'Blog', href: '/blog', icon: Newspaper },
+  { name: 'Labs', href: '/labs', icon: Flask },
   { name: 'About', href: '/about', icon: Info },
-  { name: 'Blog', href: '/blog', icon: Newspaper},
-  { name: 'Labs', href: '/labs', icon: FlaskRound},
 ];
 
 export default function Layout({ children }) {
   const location = useLocation();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const mobileMenuRef = useRef(null);
   const [indicatorStyle, setIndicatorStyle] = useState({});
   const navRefs = useRef({});
 
@@ -24,6 +40,9 @@ export default function Layout({ children }) {
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsProfileOpen(false);
+      }
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
+        setIsMobileMenuOpen(false);
       }
     }
 
@@ -45,6 +64,11 @@ export default function Layout({ children }) {
     }
   }, [location]);
 
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location]);
+
   return (
     <div className="min-h-screen bg-[#13151a]">
       <nav className="bg-[#23262d] border-b border-[rgb(136,58,234)]">
@@ -56,36 +80,35 @@ export default function Layout({ children }) {
                 <span className="ml-2 text-xl font-bold text-white">CryptoPortal</span>
               </Link>
             </div>
-            <div className="flex items-center">
-              <div className="hidden md:block">
-                <div className="ml-10 flex items-baseline space-x-4 relative">
-                  {/* Animated indicator */}
-                  <div 
-                    className="absolute bottom-0 h-1 bg-[rgb(136,58,234)] transition-all duration-300 ease-in-out rounded-full"
-                    style={indicatorStyle}
-                  />
-                  
-                  {navigation.map((item) => {
-                    const isActive = location.pathname === item.href;
-                    return (
-                      <Link
-                        key={item.name}
-                        ref={el => navRefs.current[item.href] = el}
-                        to={item.href}
-                        className={`${
-                          isActive
-                            ? 'text-[rgb(224,204,250)]'
-                            : 'text-white hover:text-[rgb(224,204,250)]'
-                        } rounded-md px-3 py-2 text-sm font-medium transition-colors duration-300`}
-                      >
-                        {item.name}
-                      </Link>
-                    );
-                  })}
-                </div>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center">
+              <div className="flex items-baseline space-x-4 relative">
+                {/* Animated indicator */}
+                <div 
+                  className="absolute bottom-0 h-1 bg-[rgb(136,58,234)] transition-all duration-300 ease-in-out rounded-full"
+                  style={indicatorStyle}
+                />
+                
+                {navigation.map((item) => {
+                  const isActive = location.pathname === item.href;
+                  return (
+                    <Link
+                      key={item.name}
+                      ref={el => navRefs.current[item.href] = el}
+                      to={item.href}
+                      className={`${
+                        isActive
+                          ? 'text-[rgb(224,204,250)]'
+                          : 'text-white hover:text-[rgb(224,204,250)]'
+                      } rounded-md px-3 py-2 text-sm font-medium transition-all duration-300`}
+                    >
+                      {item.name}
+                    </Link>
+                  );
+                })}
               </div>
               
-              {/* Rest of the navigation code remains the same */}
               <div className="ml-4 relative" ref={dropdownRef}>
                 <button
                   onClick={() => setIsProfileOpen(!isProfileOpen)}
@@ -95,7 +118,7 @@ export default function Layout({ children }) {
                 </button>
                 
                 {isProfileOpen && (
-                  <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-[#23262d] ring-1 ring-black ring-opacity-5">
+                  <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-[#23262d] ring-1 ring-black ring-opacity-5 border border-[rgb(136,58,234)]">
                     <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                       <Link
                         to="/profile"
@@ -124,6 +147,80 @@ export default function Layout({ children }) {
                   </div>
                 )}
               </div>
+            </div>
+
+            {/* Rest of the code remains exactly the same */}
+            {/* Mobile menu button */}
+            <div className="md:hidden flex items-center gap-2">
+              <div className="relative" ref={mobileMenuRef}>
+                <button
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  className="text-white hover:text-[rgb(224,204,250)] focus:outline-none p-2 rounded-md hover:bg-[rgb(49,10,101)] transition-all duration-300"
+                >
+                  {isMobileMenuOpen ? (
+                    <X className="h-6 w-6" />
+                  ) : (
+                    <Menu className="h-6 w-6" />
+                  )}
+                </button>
+
+                {isMobileMenuOpen && (
+                  <div className="absolute right-0 mt-2 w-64 rounded-lg shadow-lg bg-[#23262d] ring-1 ring-black ring-opacity-5 border border-[rgb(136,58,234)] z-50">
+                    <div className="p-2">
+                      <div className="grid grid-cols-2 gap-1">
+                        {navigation.map((item) => {
+                          const isActive = location.pathname === item.href;
+                          return (
+                            <Link
+                              key={item.name}
+                              to={item.href}
+                              className={`${
+                                isActive
+                                  ? 'bg-[rgb(49,10,101)] text-[rgb(224,204,250)]'
+                                  : 'text-white hover:bg-[rgb(49,10,101)] hover:text-[rgb(224,204,250)]'
+                              } flex flex-col items-center justify-center p-3 rounded-md text-sm font-medium transition-all duration-300`}
+                            >
+                              <item.icon className="h-5 w-5 mb-1" />
+                              <span className="text-xs">{item.name}</span>
+                            </Link>
+                          );
+                        })}
+                      </div>
+                      
+                      <div className="border-t border-[rgb(49,10,101)] mt-2 pt-2 grid grid-cols-3 gap-1">
+                        <Link
+                          to="/profile"
+                          className="flex flex-col items-center justify-center p-3 rounded-md text-sm font-medium text-white hover:bg-[rgb(49,10,101)] hover:text-[rgb(224,204,250)]"
+                        >
+                          <UserCircle className="h-5 w-5 mb-1" />
+                          <span className="text-xs">Profile</span>
+                        </Link>
+                        <Link
+                          to="/settings"
+                          className="flex flex-col items-center justify-center p-3 rounded-md text-sm font-medium text-white hover:bg-[rgb(49,10,101)] hover:text-[rgb(224,204,250)]"
+                        >
+                          <Settings className="h-5 w-5 mb-1" />
+                          <span className="text-xs">Settings</span>
+                        </Link>
+                        <button
+                          className="flex flex-col items-center justify-center p-3 rounded-md text-sm font-medium text-white hover:bg-[rgb(49,10,101)] hover:text-[rgb(224,204,250)]"
+                        >
+                          <LogOut className="h-5 w-5 mb-1" />
+                          <span className="text-xs">Logout</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+              
+              {/* Mobile Profile Button */}
+              <button
+                onClick={() => setIsProfileOpen(!isProfileOpen)}
+                className="md:hidden text-white hover:text-[rgb(224,204,250)] focus:outline-none p-2 rounded-md hover:bg-[rgb(49,10,101)] transition-all duration-300"
+              >
+                <UserCircle className="h-6 w-6" />
+              </button>
             </div>
           </div>
         </div>
