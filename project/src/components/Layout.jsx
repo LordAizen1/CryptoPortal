@@ -76,7 +76,6 @@ export default function Layout({ children }) {
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center">
               <Link to="/" className="flex items-center">
-                <BookOpen className="h-8 w-8 text-[rgb(136,58,234)]" />
                 <span className="ml-2 text-xl font-bold text-white">CryptoPortal</span>
               </Link>
             </div>
