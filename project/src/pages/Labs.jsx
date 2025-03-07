@@ -15,7 +15,7 @@ const initialLabs = [
     enrolled: 25,
     prerequisites: ['Basic Python', 'Cryptography Fundamentals'],
     image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=1000',
-    instructor: 'Dr. Sarah Johnson',
+    instructor: 'Dr. Ravi Anand',
     tools: ['Python', 'Cryptography Library', 'Jupyter Notebook'],
   },
   {
@@ -27,7 +27,7 @@ const initialLabs = [
     enrolled: 20,
     prerequisites: ['Public Key Cryptography', 'Java Programming'],
     image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=1000',
-    instructor: 'Prof. Michael Chen',
+    instructor: 'Dr. Ravi Anand',
     tools: ['Java', 'OpenSSL', 'Eclipse IDE'],
   },
 ];
@@ -238,28 +238,7 @@ export default function Labs() {
                   </ul>
                 </motion.div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.6 }}
-                  className="flex justify-between items-center"
-                >
-                  <div className="w-2/3 bg-[rgba(49,10,101,0.2)] rounded-full h-2 mr-4">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: `${(lab.enrolled / lab.capacity) * 100}%` }}
-                      transition={{ duration: 0.8, delay: 0.7 }}
-                      className="bg-[rgb(136,58,234)] h-2 rounded-full"
-                    ></motion.div>
-                  </div>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="bg-[rgb(136,58,234)] text-white py-2 px-4 rounded-md hover:bg-[rgb(49,10,101)] transition-colors duration-300"
-                  >
-                    Enroll Now
-                  </motion.button>
-                </motion.div>
+          
               </div>
             </div>
           </motion.div>
