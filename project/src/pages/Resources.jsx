@@ -68,46 +68,46 @@ const resources = {
   ],
   books: [
     {
-      title: 'Introduction to Modern Cryptography',
-      authors: 'Jonathan Katz and Yehuda Lindell',
-      edition: '3rd Edition',
-      year: '2020',
-      link: 'https://drive.google.com/file/d/1_TJW_qbC9Lih5-yI-SfBrN3Vh2enOAmN/view?usp=sharing'
+      title: 'A Graduate Course in Applied Cryptography',
+      authors: 'Dan Boneh and Victor Shoup',
+      edition: 'version 0.6',
+      year: 'Jan. 2023',
+      link: 'https://crypto.stanford.edu/~dabo/cryptobook/BonehShoup_0_4.pdf'
     },
     {
       title: 'Cryptography Engineering',
       authors: 'Niels Ferguson, Bruce Schneier, and Tadayoshi Kohno',
-      edition: '2nd Edition',
-      year: '2019',
-      link: 'https://drive.google.com/file/d/1zit9empA_MnJG_3uUUXb60I1OGRX0N_B/view?usp=sharing'
+      edition: '1st Edition',
+      year: '2010',
+      link: 'https://content.e-bookshelf.de/media/reading/L-654462-6089c9aec2.pdf'
     }
   ],
   videos: [
     {
-      title: 'Public Key Cryptography Explained',
-      duration: '45 minutes',
-      instructor: 'Dr. Emily Rodriguez',
+      title: 'Introduction to Cryptography by Christof Paar',
+      duration: '98 minutes',
+      instructor: 'Christof Paar',
       thumbnail: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=1000',
-      videoUrl: 'https://www.youtube.com/watch?v=xw19eT5thIE'
+      videoUrl: 'https://www.youtube.com/watch?v=2aHkqB2-46k'
     },
     {
-      title: 'Understanding Hash Functions',
-      duration: '35 minutes',
-      instructor: 'Prof. David Kim',
+      title: 'Quantum Computation',
+      duration: '64 Videos ~11 Minutes each',
+      instructor: 'Umesh Vazirani',
       thumbnail: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=1000',
-      videoUrl: 'https://www.youtube.com/watch?v=gTfNtop9vzM'
+      videoUrl: 'https://www.youtube.com/watch?v=Z1uoz_8dLH0&list=PL74Rel4IAsETUwZS_Se_P-fSEyEVQwni7'
     }
   ],
-  additionalLinks: [
+  researchPapers: [
     {
-      title: 'Cryptography Research Papers Database',
-      description: 'Access the latest research papers in cryptography',
-      url: '#'
+      title: 'Cryptology ePrint Archive',
+      description: 'The Cryptology ePrint Archive provides rapid access to recent research in cryptology. Papers have been placed here by the authors and did not undergo any refereeing process other than verifying that the work seems to be within the scope of cryptology and meets some minimal acceptance criteria and publishing conditions.',
+      url: 'https://eprint.iacr.org/'
     },
     {
-      title: 'Online Cryptography Tools',
-      description: 'Interactive tools for learning and practicing cryptography',
-      url: '#'
+      title: 'algoTRIC',
+      description: 'Symmetric and asymmetric encryption algorithms for Cryptography -- A comparative analysis in AI era',
+      url: 'https://arxiv.org/pdf/2412.15237'
     }
   ]
 };
@@ -120,7 +120,7 @@ export default function Resources() {
     { id: 'lectures', label: 'Lectures', icon: FileText },
     { id: 'books', label: 'Books', icon: Book },
     { id: 'videos', label: 'Videos', icon: Video },
-    { id: 'additionalLinks', label: 'Additional Links', icon: LinkIcon },
+    { id: 'researchPapers', label: 'Research Papers', icon: LinkIcon },
   ];
 
   const renderContent = () => {
@@ -256,7 +256,7 @@ export default function Resources() {
               </motion.div>
             );
 
-      case 'additionalLinks':
+      case 'researchPapers':
         return (
           <motion.div 
             initial={{ opacity: 0 }}
@@ -264,7 +264,7 @@ export default function Resources() {
             transition={{ duration: 0.2 }}
             className="grid md:grid-cols-2 gap-6"
           >
-            {resources.additionalLinks.map((link, index) => (
+            {resources.researchPapers.map((link, index) => (
               <motion.a
                 key={index}
                 href={link.url}
